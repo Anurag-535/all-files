@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed a Life - Reducing Food Waste, Feeding Lives</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles3.css">
+    <link rel="stylesheet" href="styles2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script src="script1.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-utensils"></i> Feed a Life</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" id="login-btn" class="btn">Login</a></li>
+                    <li><a href="#" id="register-btn" class="btn btn-primary">Register</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Reduce Food Waste, Feed Lives</h2>
+                <p>Connecting restaurants with excess food to those who need it most</p>
+                <div class="hero-buttons">
+                    <a href="#" id="donate-food-btn" class="btn btn-primary">Donate Food</a>
+                    <a href="#" id="find-food-btn" class="btn btn-secondary">Find Food</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Food Listings Section -->
+        <section id="food-listings" class="section">
+            <div class="container">
+                <h2 class="section-title">Available Food Donations</h2>
+                <div class="filter-controls">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search by food type, location...">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="filter-options">
+                        <select id="filter-location">
+                            <option value="">All Locations</option>
+                            <!-- To be populated by JavaScript -->
+                        </select>
+                        <select id="filter-food-type">
+                            <option value="">All Food Types</option>
+                            <option value="meal">Full Meals</option>
+                            <option value="bread">Bread & Bakery</option>
+                            <option value="produce">Fruits & Vegetables</option>
+                            <option value="protein">Protein</option>
+                            <option value="dessert">Desserts</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="view-toggle">
+                    <button id="list-view-btn" class="active"><i class="fas fa-list"></i> List View</button>
+                    <button id="map-view-btn"><i class="fas fa-map-marker-alt"></i> Map View</button>
+                </div>
+
+                <div id="list-view" class="food-cards">
+                    <!-- Food cards will be dynamically populated by JavaScript -->
+                </div>
+
+                <div id="map-view" class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">About Feed a Life</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Feed a Life is a platform dedicated to tackling two critical issues simultaneously: food waste and hunger. We connect restaurants and food businesses that have excess food with organizations and individuals who need it.</p>
+                        <p>Every day, tons of perfectly good food goes to waste while millions go hungry. We're bridging this gap by making it easy for restaurants to donate their surplus food and for those in need to find available meals nearby.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3>5,000+</h3>
+                            <p>Meals Shared</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>150+</h3>
+                            <p>Restaurants</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>50+</h3>
+                            <p>NGO Partners</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>For Restaurants</h3>
+                        <ol>
+                            <li>Register your restaurant</li>
+                            <li>Post available surplus food</li>
+                            <li>Set pickup time and location</li>
+                            <li>Confirm pickups and track impact</li>
+                        </ol>
+                        <a href="#" class="btn btn-primary restaurant-action-btn">Register Restaurant</a>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>For NGOs & Organizations</h3>
+                        <ol>
+                            <li>Create an account</li>
+                            <li>Find available food near you</li>
+                            <li>Request food pickup</li>
+                            <li>Distribute to those in need</li>
+                        </ol>
+                        <a href="#" class="btn btn-primary ngo-action-btn">Register Organization</a>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>For Individuals</h3>
+                        <ol>
+                            <li>No account needed</li>
+                            <li>Find food available near you</li>
+                            <li>Contact the restaurant</li>
+                            <li>Pickup food during specified times</li>
+                        </ol>
+                        <a href="#" class="btn btn-primary individual-action-btn">Find Food Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>contact@feedalife.org</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>123 Caring Street, Foodville, FC 12345</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><i class="fas fa-utensils"></i> Feed a Life</h2>
+                    <p>Reducing Food Waste, Feeding Lives</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>For Restaurants</h3>
+                        <ul>
+                            <li><a href="#">Register</a></li>
+                            <li><a href="#">Donate Food</a></li>
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>For NGOs & Individuals</h3>
+                        <ul>
+                            <li><a href="#">Find Food</a></li>
+                            <li><a href="#">Register Organization</a></li>
+                            <li><a href="#">Resources</a></li>
+                            <li><a href="#">Success Stories</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Feed a Life. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Components -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-type">I am a:</label>
+                    <select id="login-type" name="user-type">
+                        <option value="restaurant">Restaurant</option>
+                        <option value="ngo">Organization/NGO</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <p class="form-footer">Don't have an account? <a href="#" id="switch-to-register">Register here</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Register</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-type">I am registering as a:</label>
+                    <select id="register-type" name="user-type">
+                        <option value="restaurant">Restaurant</option>
+                        <option value="ngo">Organization/NGO</option>
+                    </select>
+                </div>
+
+                <!-- Common fields -->
+                <div class="form-group">
+                    <label for="register-name">Name</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" name="confirm-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Phone Number</label>
+                    <input type="tel" id="register-phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-address">Address</label>
+                    <input type="text" id="register-address" name="address" required>
+                </div>
+                
+                <!-- Restaurant-specific fields -->
+                <div id="restaurant-fields">
+                    <div class="form-group">
+                        <label for="restaurant-type">Restaurant Type</label>
+                        <select id="restaurant-type" name="restaurant-type">
+                            <option value="cafe">Café</option>
+                            <option value="fastfood">Fast Food</option>
+                            <option value="finedining">Fine Dining</option>
+                            <option value="bakery">Bakery</option>
+                            <option value="buffet">Buffet</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- NGO-specific fields -->
+                <div id="ngo-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="ngo-type">Organization Type</label>
+                        <select id="ngo-type" name="ngo-type">
+                            <option value="shelter">Shelter</option>
+                            <option value="foodbank">Food Bank</option>
+                            <option value="community">Community Center</option>
+                            <option value="religious">Religious Institution</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ngo-description">Organization Description</label>
+                        <textarea id="ngo-description" name="ngo-description" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <p class="form-footer">Already have an account? <a href="#" id="switch-to-login">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Add Food Donation Modal -->
+    <div id="add-donation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Donate Food</h2>
+            <form id="add-donation-form">
+                <div class="form-group">
+                    <label for="food-title">Food Title</label>
+                    <input type="text" id="food-title" name="food-title" placeholder="e.g., Fresh Pasta Meals" required>
+                </div>
+                <div class="form-group">
+                    <label for="food-description">Description</label>
+                    <textarea id="food-description" name="food-description" rows="3" placeholder="Describe the food, its condition, ingredients, etc." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="food-type">Food Type</label>
+                    <select id="food-type" name="food-type" required>
+                        <option value="meal">Full Meals</option>
+                        <option value="bread">Bread & Bakery</option>
+                        <option value="produce">Fruits & Vegetables</option>
+                        <option value="protein">Protein</option>
+                        <option value="dessert">Desserts</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="food-quantity">Quantity</label>
+                    <input type="text" id="food-quantity" name="food-quantity" placeholder="e.g., 10 meals, 5 kg, 3 trays" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickup-start">Pickup Time (Start)</label>
+                    <input type="time" id="pickup-start" name="pickup-start" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickup-end">Pickup Time (End)</label>
+                    <input type="time" id="pickup-end" name="pickup-end" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="date" id="expiry-date" name="expiry-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="donation-address">Pickup Address</label>
+                    <input type="text" id="donation-address" name="donation-address" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-info">Contact Information</label>
+                    <input type="text" id="contact-info" name="contact-info" placeholder="Phone number or email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Donation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Find Food Near Me Modal -->
+    <div id="find-near-me-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Find Food Near Me</h2>
+            <div class="near-me-content">
+                <p>Allow location access to find food available near you:</p>
+                <button id="get-location-btn" class="btn btn-primary">
+                    <i class="fas fa-location-arrow"></i> Use My Location
+                </button>
+                <div class="or-divider">
+                    <span>OR</span>
+                </div>
+                <div class="form-group">
+                    <label for="location-search">Enter Address or Zip Code</label>
+                    <input type="text" id="location-search" placeholder="Enter your address or zip code">
+                    <button id="search-location-btn" class="btn btn-secondary">Search</button>
+                </div>
+                <div id="near-me-map" class="map-container" style="height: 300px; margin-top: 20px;"></div>
+                <div id="near-me-results">
+                    <!-- Results will be dynamically populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Food Detail Modal -->
+    <div id="food-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="food-detail-content">
+                <!-- Will be dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard (to be shown when logged in) -->
+    <div id="restaurant-dashboard" style="display: none;">
+        <div class="dashboard-header">
+            <h2>Restaurant Dashboard</h2>
+            <button id="logout-btn" class="btn btn-secondary">Logout</button>
+        </div>
+        <div class="dashboard-content">
+            <div class="dashboard-sidebar">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3 id="restaurant-name">Restaurant Name</h3>
+                    <p id="restaurant-type-display">Restaurant Type</p>
+                </div>
+                <ul class="dashboard-nav">
+                    <li class="active" data-tab="my-donations">My Donations</li>
+                    <li data-tab="add-donation">Add Donation</li>
+                    <li data-tab="profile">Profile</li>
+                    <li data-tab="statistics">Statistics</li>
+                </ul>
+            </div>
+            <div class="dashboard-main">
+                <div id="my-donations" class="dashboard-tab active">
+                    <h3>My Donations</h3>
+                    <div class="dashboard-actions">
+                        <button id="dashboard-add-donation" class="btn btn-primary">Add New Donation</button>
+                        <select id="donations-filter">
+                            <option value="all">All Donations</option>
+                            <option value="active">Active Donations</option>
+                            <option value="expired">Expired Donations</option>
+                            <option value="claimed">Claimed Donations</option>
+                        </select>
+                    </div>
+                    <div id="my-donations-list">
+                        <!-- Will be dynamically populated -->
+                    </div>
+                </div>
+                <div id="add-donation" class="dashboard-tab">
+                    <h3>Add New Donation</h3>
+                    <!-- Add donation form will be cloned here -->
+                </div>
+                <div id="profile" class="dashboard-tab">
+                    <h3>Restaurant Profile</h3>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="profile-name">Restaurant Name</label>
+                            <input type="text" id="profile-name" name="profile-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email">Email</label>
+                            <input type="email" id="profile-email" name="profile-email">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-phone">Phone</label>
+                            <input type="tel" id="profile-phone" name="profile-phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-address">Address</label>
+                            <input type="text" id="profile-address" name="profile-address">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-description">Restaurant Description</label>
+                            <textarea id="profile-description" name="profile-description" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+                <div id="statistics" class="dashboard-tab">
+                    <h3>Impact Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-hamburger"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Total Donations</h4>
+                                <p id="stat-total-donations">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Meals Provided</h4>
+                                <p id="stat-meals-provided">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trash-restore"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Food Saved (kg)</h4>
+                                <p id="stat-food-saved">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>People Helped</h4>
+                                <p id="stat-people-helped">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="charts-container">
+                        <div class="chart">
+                            <h4>Donations by Month</h4>
+                            <div id="donations-chart" class="chart-placeholder">
+                                <p>Chart will be displayed here</p>
+                            </div>
+                        </div>
+                        <div class="chart">
+                            <h4>Food Types Donated</h4>
+                            <div id="food-types-chart" class="chart-placeholder">
+                                <p>Chart will be displayed here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
